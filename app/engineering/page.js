@@ -9,7 +9,7 @@ import Contact from "@/components/Contact";
 export default function EngineeringPage() {
   return (
     <>
-      {/* Hero — CSS animations so it's always visible */}
+      {/* Hero - CSS animations so it's always visible */}
       <section className="grid-bg"
         style={{ paddingTop: 128, paddingBottom: 80, position: "relative", overflow: "hidden" }}>
         <div style={{ position:"absolute", inset:0, pointerEvents:"none",
@@ -28,17 +28,17 @@ export default function EngineeringPage() {
               </span>
             </div>
 
-            <h1 style={{ fontSize:"clamp(2.2rem, 6vw, 4rem)", fontWeight:700, color:"#F5F5F7",
+            <h1 style={{ fontSize:"clamp(2.2rem, 6vw, 4rem)", fontWeight:700, color:"var(--text-primary)",
               letterSpacing:"-0.03em", lineHeight:1.1, marginBottom:20 }}>
               Engineering Behind
               <br />
               <span className="gradient-text">My GTM Systems</span>
             </h1>
 
-            <p style={{ fontSize:"clamp(1rem, 2vw, 1.15rem)", color:"#A1A1AA", maxWidth:520, lineHeight:1.75 }}>
+            <p style={{ fontSize:"clamp(1rem, 2vw, 1.15rem)", color:"var(--text-secondary)", maxWidth:520, lineHeight:1.75 }}>
               Automation is powerful.{" "}
-              <span style={{ color:"#F5F5F7" }}>Custom software makes it scalable.</span>{" "}
-              Most GTM operators can't code — this is the differentiator.
+              <span style={{ color:"var(--text-primary)" }}>Custom software makes it scalable.</span>{" "}
+              Most GTM operators can't code - this is the differentiator.
             </p>
 
           </div>

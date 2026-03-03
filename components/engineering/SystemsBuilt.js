@@ -26,7 +26,7 @@ const systems = [
     icon: Activity, accent: "#60A5FA", tech: ["Apify", "Make", "Clay"],
     title: "Engagement Detection System",
     highlight: "Real-time signal detection",
-    desc: "Scrapers and automations that detect company activity signals across LinkedIn — profile updates, job postings, funding announcements.",
+    desc: "Scrapers and automations that detect company activity signals across LinkedIn - profile updates, job postings, funding announcements.",
   },
 ];
 
@@ -47,11 +47,11 @@ export default function SystemsBuilt() {
             Built in Production
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em", marginBottom: 12 }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em", marginBottom: 12 }}>
             Systems I've Built
           </h2>
-          <p style={{ fontSize: 16, color: "#A1A1AA", maxWidth: 480, lineHeight: 1.7 }}>
-            Real systems deployed for real clients — combining GTM tools with custom engineering.
+          <p style={{ fontSize: 16, color: "var(--text-secondary)", maxWidth: 480, lineHeight: 1.7 }}>
+            Real systems deployed for real clients - combining GTM tools with custom engineering.
           </p>
         </motion.div>
 
@@ -66,8 +66,8 @@ export default function SystemsBuilt() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -6, borderColor: `${s.accent}30` }}
-                style={{ padding: 28, borderRadius: 16, border: "1px solid #2A2A2E",
-                  background: "#18181B", position: "relative", overflow: "hidden",
+                style={{ padding: 28, borderRadius: 16, border: "1px solid var(--border)",
+                  background: "var(--bg-card)", position: "relative", overflow: "hidden",
                   cursor: "default", transition: "border-color 0.3s, transform 0.3s" }}
               >
                 <div style={{ position:"absolute", inset:0, pointerEvents:"none",
@@ -90,16 +90,16 @@ export default function SystemsBuilt() {
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
                   {s.tech.map(t => (
                     <span key={t} style={{ fontSize: 11, padding: "3px 10px", borderRadius: 5,
-                      border: "1px solid #2A2A2E", background: "#1F1F23", color: "#A1A1AA" }}>
+                      border: "1px solid var(--border)", background: "var(--bg-card-hover)", color: "var(--text-secondary)" }}>
                       {t}
                     </span>
                   ))}
                 </div>
 
-                <h3 style={{ fontSize: 15, fontWeight: 600, color: "#F5F5F7", marginBottom: 10 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 10 }}>
                   {s.title}
                 </h3>
-                <p style={{ fontSize: 13.5, color: "#A1A1AA", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.65 }}>
                   {s.desc}
                 </p>
               </motion.div>

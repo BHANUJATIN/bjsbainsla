@@ -45,13 +45,11 @@ export default function Pipeline() {
   return (
     <section ref={ref} style={{ padding: "96px 0", position: "relative", overflow: "hidden" }}>
 
-      {/* Glow */}
       <div style={{ position:"absolute", inset:0, pointerEvents:"none",
         background:"radial-gradient(ellipse 80% 40% at 50% 50%, rgba(96,165,250,0.04) 0%, transparent 70%)" }} />
 
       <div className="container-xl">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,26 +62,20 @@ export default function Pipeline() {
             System Architecture
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em", marginBottom: 12 }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em", marginBottom: 12 }}>
             Automated Job Discovery Pipeline
           </h2>
-          <p style={{ fontSize: 16, color: "#A1A1AA", maxWidth: 500, margin: "0 auto" }}>
-            From raw job postings to ready-to-contact leads — fully automated.
+          <p style={{ fontSize: 16, color: "var(--text-secondary)", maxWidth: 500, margin: "0 auto" }}>
+            From raw job postings to ready-to-contact leads - fully automated.
           </p>
         </motion.div>
 
-        {/* ─── Desktop: horizontal pipeline ─── */}
-        <div style={{ display: "none" }} className="pipeline-desktop">
-          {/* handled below with JS class */}
-        </div>
-
-        {/* Pipeline grid — works at all widths */}
         <div style={{ position: "relative" }}>
 
-          {/* Animated connector line (desktop) */}
+          {/* Animated connector line */}
           <div style={{ position: "relative", marginBottom: 32 }}>
             <div style={{ position: "absolute", top: 24, left: "5%", right: "5%",
-              height: 1, background: "#2A2A2E", zIndex: 0 }} />
+              height: 1, background: "var(--border)", zIndex: 0 }} />
             <motion.div
               style={{ position: "absolute", top: 24, left: "5%", height: 1, zIndex: 1,
                 background: "linear-gradient(90deg, #60A5FA, #6EE7B7, #60A5FA)" }}
@@ -110,19 +102,16 @@ export default function Pipeline() {
                   style={{ display: "flex", flexDirection: "column", alignItems: "center",
                     cursor: "default", position: "relative" }}
                 >
-                  {/* Icon */}
                   <motion.div
                     whileHover={{ scale: 1.12 }}
                     style={{ width: 48, height: 48, borderRadius: 16, display: "flex",
                       alignItems: "center", justifyContent: "center", marginBottom: 16,
-                      background: isActive ? `${s.accent}20` : "#18181B",
-                      border: `1px solid ${isActive ? s.accent : "#2A2A2E"}`,
+                      background: isActive ? `${s.accent}20` : "var(--bg-card)",
+                      border: `1px solid ${isActive ? s.accent : "var(--border)"}`,
                       boxShadow: isActive ? `0 0 20px ${s.accent}30` : "none",
                       transition: "all 0.3s", zIndex: 1, position: "relative" }}
                   >
                     <Icon size={18} style={{ color: s.accent }} />
-
-                    {/* Pulse ring when active */}
                     {isActive && (
                       <motion.div
                         style={{ position:"absolute", inset:0, borderRadius:16, border:`1px solid ${s.accent}` }}
@@ -132,38 +121,35 @@ export default function Pipeline() {
                     )}
                   </motion.div>
 
-                  {/* Labels */}
                   <div style={{ textAlign: "center", marginBottom: 12 }}>
                     <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase",
-                      letterSpacing: "0.1em", color: isActive ? s.accent : "#A1A1AA",
+                      letterSpacing: "0.1em", color: isActive ? s.accent : "var(--text-secondary)",
                       marginBottom: 4, transition: "color 0.2s" }}>
                       {s.subtitle}
                     </div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "#F5F5F7" }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text-primary)" }}>
                       {s.title}
                     </div>
                   </div>
 
-                  {/* Items */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 5, width: "100%" }}>
                     {s.items.map(item => (
                       <div key={item}
                         style={{ fontSize: 11, textAlign: "center", padding: "5px 8px", borderRadius: 7,
-                          border: `1px solid ${isActive ? `${s.accent}25` : "#2A2A2E"}`,
-                          background: "#18181B", color: "#A1A1AA", transition: "border-color 0.2s" }}>
+                          border: `1px solid ${isActive ? `${s.accent}25` : "var(--border)"}`,
+                          background: "var(--bg-card)", color: "var(--text-secondary)", transition: "border-color 0.2s" }}>
                         {item}
                       </div>
                     ))}
                   </div>
 
-                  {/* Hover description */}
                   {isActive && (
                     <motion.div
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       style={{ marginTop: 12, padding: "8px 12px", borderRadius: 10,
-                        border: "1px solid #2A2A2E", background: "#1F1F23",
-                        fontSize: 12, color: "#A1A1AA", textAlign: "center", lineHeight: 1.5 }}
+                        border: "1px solid var(--border)", background: "var(--bg-card-hover)",
+                        fontSize: 12, color: "var(--text-secondary)", textAlign: "center", lineHeight: 1.5 }}
                     >
                       {s.desc}
                     </motion.div>

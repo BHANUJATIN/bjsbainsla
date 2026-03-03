@@ -33,7 +33,7 @@ export default function ProblemSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ padding: 32, borderRadius: 20, border: "1px solid #2A2A2E", background: "#18181B", position: "relative", overflow: "hidden" }}
+            style={{ padding: 32, borderRadius: 20, border: "1px solid var(--border)", background: "var(--bg-card)", position: "relative", overflow: "hidden" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
               <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(239,68,68,0.1)",
@@ -43,11 +43,11 @@ export default function ProblemSolution() {
               <div>
                 <div style={{ fontSize: 11, fontWeight: 600, color: "#F87171", textTransform: "uppercase",
                   letterSpacing: "0.1em", marginBottom: 2 }}>The Problem</div>
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "#F5F5F7" }}>Manual Research is Broken</h3>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)" }}>Manual Research is Broken</h3>
               </div>
             </div>
 
-            <p style={{ fontSize: 14, color: "#A1A1AA", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 20 }}>
               Recruitment firms waste hours daily manually searching for jobs across multiple platforms.
               The process is slow, inconsistent, and misses time-sensitive opportunities.
             </p>
@@ -65,7 +65,7 @@ export default function ProblemSolution() {
                     background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.1)" }}
                 >
                   <Clock size={12} style={{ color: "rgba(248,113,113,0.5)", flexShrink: 0 }} />
-                  <span style={{ fontSize: 13.5, color: "#A1A1AA" }}>{item}</span>
+                  <span style={{ fontSize: 13.5, color: "var(--text-secondary)" }}>{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -78,7 +78,7 @@ export default function ProblemSolution() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.12 }}
             style={{ padding: 32, borderRadius: 20, border: "1px solid rgba(110,231,183,0.2)",
-              background: "#18181B", position: "relative", overflow: "hidden",
+              background: "var(--bg-card)", position: "relative", overflow: "hidden",
               boxShadow: "0 0 60px rgba(110,231,183,0.04)" }}
           >
             {/* Glow */}
@@ -93,11 +93,11 @@ export default function ProblemSolution() {
               <div>
                 <div style={{ fontSize: 11, fontWeight: 600, color: "#6EE7B7", textTransform: "uppercase",
                   letterSpacing: "0.1em", marginBottom: 2 }}>The Solution</div>
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "#F5F5F7" }}>Fully Automated Discovery</h3>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)" }}>Fully Automated Discovery</h3>
               </div>
             </div>
 
-            <p style={{ fontSize: 14, color: "#A1A1AA", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 20 }}>
               I build automated systems that monitor platforms 24/7, classify relevant jobs,
               identify decision-makers, and deliver structured lead lists daily.
             </p>
@@ -115,7 +115,7 @@ export default function ProblemSolution() {
                     background: "rgba(110,231,183,0.04)", border: "1px solid rgba(110,231,183,0.1)" }}
                 >
                   <Check size={12} style={{ color: "#6EE7B7", flexShrink: 0 }} />
-                  <span style={{ fontSize: 13.5, color: "#A1A1AA" }}>{item}</span>
+                  <span style={{ fontSize: 13.5, color: "var(--text-secondary)" }}>{item}</span>
                 </motion.div>
               ))}
             </div>

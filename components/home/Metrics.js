@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 const metrics = [
   { value: 12, suffix: "+", label: "Client GTM Systems Built", sub: "Across recruitment, fintech & SaaS" },
   { value: 30, suffix: "+", label: "Clay Tables Deployed",     sub: "End-to-end, production-ready" },
-  { value: 3,  suffix: "",  label: "Industries Served",        sub: "Fintech, Recruitment, Nonprofit" },
+  { value: 7,  suffix: "+",  label: "Industries Served",        sub: "Fintech, Recruitment, Nonprofit" },
   { value: 1000, suffix: "s", label: "Leads Processed Weekly", sub: "Through automated pipelines" },
 ];
 
@@ -34,7 +34,7 @@ function Counter({ value, suffix }) {
 
 export default function Metrics() {
   return (
-    <section style={{ padding: "80px 0", borderTop: "1px solid #2A2A2E", borderBottom: "1px solid #2A2A2E",
+    <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)",
       position: "relative", overflow: "hidden" }}>
 
       {/* Glow */}
@@ -55,7 +55,7 @@ export default function Metrics() {
             Track Record
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em" }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em" }}>
             Execution Experience
           </h2>
         </motion.div>
@@ -70,17 +70,17 @@ export default function Metrics() {
               transition={{ duration: 0.55, delay: i * 0.1 }}
               whileHover={{ borderColor: "rgba(110,231,183,0.25)" }}
               style={{ textAlign: "center", padding: "28px 20px", borderRadius: 16,
-                border: "1px solid #2A2A2E", background: "#18181B", transition: "border-color 0.3s" }}
+                border: "1px solid var(--border)", background: "var(--bg-card)", transition: "border-color 0.3s" }}
             >
               <div className="gradient-text"
                 style={{ fontSize: "clamp(2.2rem, 5vw, 3rem)", fontWeight: 700,
                   lineHeight: 1, marginBottom: 10 }}>
                 <Counter value={m.value} suffix={m.suffix} />
               </div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F7", marginBottom: 6 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)", marginBottom: 6 }}>
                 {m.label}
               </div>
-              <div style={{ fontSize: 12, color: "#A1A1AA" }}>{m.sub}</div>
+              <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>{m.sub}</div>
             </motion.div>
           ))}
         </div>

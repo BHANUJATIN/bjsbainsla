@@ -7,7 +7,7 @@ const steps = [
   {
     num: "01", icon: Radar, accent: "#6EE7B7",
     title: "Signal Discovery",
-    desc: "Identify data signals that indicate buying intent — job postings, hiring signals, and company growth patterns.",
+    desc: "Identify data signals that indicate buying intent - job postings, hiring signals, and company growth patterns.",
   },
   {
     num: "02", icon: Database, accent: "#60A5FA",
@@ -15,12 +15,12 @@ const steps = [
     desc: "Build enrichment pipelines combining APIs, scraping, and Clay workflows to gather actionable intelligence.",
   },
   {
-    num: "03", icon: Cpu, accent: "#6EE7B7",
+    num: "03", icon: Cpu, accent: "#A78BFA",
     title: "Automation Layer",
     desc: "Integrate Make, n8n, or custom code to scale operations beyond manual capacity.",
   },
   {
-    num: "04", icon: Send, accent: "#60A5FA",
+    num: "04", icon: Send, accent: "#FBBF24",
     title: "Outbound Delivery",
     desc: "Deliver leads to outreach tools like Smartlead or internal CRMs for targeted, personalised campaigns.",
   },
@@ -44,7 +44,7 @@ export default function Process() {
             Methodology
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
             How I Approach GTM Systems
           </h2>
         </motion.div>
@@ -62,7 +62,7 @@ export default function Process() {
                 transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Step number */}
-                <p style={{ fontSize: 11, fontFamily: "monospace", color: "#3A3A3E", marginBottom: 16 }}>
+                <p style={{ fontSize: 11, fontFamily: "monospace", color: "var(--text-ghost)", marginBottom: 16 }}>
                   {s.num}
                 </p>
 
@@ -77,10 +77,10 @@ export default function Process() {
                   <Icon size={20} style={{ color: s.accent }} />
                 </motion.div>
 
-                <h3 style={{ fontSize: 15, fontWeight: 600, color: "#F5F5F7", marginBottom: 10 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 10 }}>
                   {s.title}
                 </h3>
-                <p style={{ fontSize: 13.5, color: "#A1A1AA", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.65 }}>
                   {s.desc}
                 </p>
               </motion.div>

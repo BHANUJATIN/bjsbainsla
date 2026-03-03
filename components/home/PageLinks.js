@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Code2, Briefcase, ArrowRight } from "lucide-react";
+import { Code2, Briefcase, User, ArrowRight } from "lucide-react";
 
 const pages = [
   {
@@ -11,7 +11,7 @@ const pages = [
     accent: "#60A5FA",
     label: "Engineering",
     title: "The Tech Behind the Systems",
-    desc: "Custom APIs, automation pipelines, and full-stack tooling that makes GTM scalable — not just possible.",
+    desc: "Custom APIs, automation pipelines, and full-stack tooling that makes GTM scalable - not just possible.",
     tags: ["Stack", "Systems Built", "Why It Matters"],
   },
   {
@@ -20,14 +20,23 @@ const pages = [
     accent: "#6EE7B7",
     label: "Recruitment Automation",
     title: "Find Hiring Companies First",
-    desc: "Automated job discovery and lead delivery — so your team calls before competitors even find the opening.",
+    desc: "Automated job discovery and lead delivery - so your team calls before competitors even find the opening.",
     tags: ["Pipeline", "Job Discovery", "ROI"],
+  },
+  {
+    href: "/about",
+    icon: User,
+    accent: "#A78BFA",
+    label: "About",
+    title: "Background & Experience",
+    desc: "B.Tech CSE from IIITM Gwalior, frontend internships, and 1.5+ years building GTM automation systems.",
+    tags: ["Education", "Timeline", "Journey"],
   },
 ];
 
 export default function PageLinks() {
   return (
-    <section style={{ padding: "72px 0", borderTop: "1px solid #2A2A2E" }}>
+    <section style={{ padding: "72px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container-xl">
 
         <motion.p
@@ -36,7 +45,7 @@ export default function PageLinks() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           style={{
-            fontSize: 11, fontWeight: 600, color: "#52525B",
+            fontSize: 11, fontWeight: 600, color: "var(--text-faint)",
             textTransform: "uppercase", letterSpacing: "0.14em",
             textAlign: "center", marginBottom: 28,
           }}
@@ -57,11 +66,11 @@ export default function PageLinks() {
               >
                 <Link href={page.href} style={{ textDecoration: "none", display: "block" }}>
                   <motion.div
-                    whileHover={{ y: -3, borderColor: `${page.accent}40` }}
+                    whileHover={{ y: -3, scale: 1.01, borderColor: `${page.accent}40` }}
                     style={{
                       padding: "26px 26px 22px",
-                      borderRadius: 14, border: "1px solid #2A2A2E",
-                      background: "#18181B",
+                      borderRadius: 14, border: "1px solid var(--border)",
+                      background: "var(--bg-card)",
                       transition: "border-color 0.25s",
                       cursor: "pointer",
                     }}
@@ -83,19 +92,19 @@ export default function PageLinks() {
                           {page.label}
                         </span>
                       </div>
-                      <ArrowRight size={13} style={{ color: "#52525B", flexShrink: 0 }} />
+                      <ArrowRight size={13} style={{ color: "var(--text-faint)", flexShrink: 0 }} />
                     </div>
 
                     {/* Title */}
                     <h3 style={{
-                      fontSize: 15, fontWeight: 600, color: "#E4E4E7",
+                      fontSize: 15, fontWeight: 600, color: "var(--text-primary)",
                       letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.35,
                     }}>
                       {page.title}
                     </h3>
 
                     {/* Description */}
-                    <p style={{ fontSize: 13, color: "#71717A", lineHeight: 1.65, marginBottom: 18 }}>
+                    <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, marginBottom: 18 }}>
                       {page.desc}
                     </p>
 
@@ -103,8 +112,8 @@ export default function PageLinks() {
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                       {page.tags.map(tag => (
                         <span key={tag} style={{
-                          fontSize: 10, color: "#52525B", padding: "3px 8px",
-                          borderRadius: 100, border: "1px solid #2A2A2E",
+                          fontSize: 10, color: "var(--text-faint)", padding: "3px 8px",
+                          borderRadius: 100, border: "1px solid var(--border)",
                           letterSpacing: "0.04em",
                         }}>
                           {tag}

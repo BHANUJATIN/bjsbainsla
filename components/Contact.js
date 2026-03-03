@@ -7,7 +7,7 @@ import { Mail, Calendar, ExternalLink } from "lucide-react";
 export default function Contact() {
   return (
     <section id="contact"
-      style={{ padding: "96px 0", borderTop: "1px solid #2A2A2E", position: "relative", overflow: "hidden" }}>
+      style={{ padding: "96px 0", borderTop: "1px solid var(--border)", position: "relative", overflow: "hidden" }}>
 
       {/* Glow */}
       <div style={{ position:"absolute", inset:0, pointerEvents:"none",
@@ -31,7 +31,7 @@ export default function Contact() {
               height={80}
               style={{
                 borderRadius: 14,
-                border: "1px solid #2A2A2E",
+                border: "1px solid var(--border)",
                 objectFit: "cover",
                 objectPosition: "center top",
                 display: "block",
@@ -45,10 +45,10 @@ export default function Contact() {
             Let's Talk
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em", marginBottom: 16 }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em", marginBottom: 16 }}>
             Get in Touch
           </h2>
-          <p style={{ fontSize: 16, color: "#A1A1AA", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: "var(--text-secondary)", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
             If you're building outbound infrastructure or need recruitment automation systems,
             let's discuss what's possible.
           </p>
@@ -64,9 +64,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            whileHover={{ y: -5, borderColor: "rgba(110,231,183,0.35)" }}
+            whileHover={{ y: -4, scale: 1.02, borderColor: "rgba(110,231,183,0.35)" }}
             style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
-              padding: 32, borderRadius: 16, border: "1px solid #2A2A2E", background: "#18181B",
+              padding: 32, borderRadius: 16, border: "1px solid var(--border)", background: "var(--bg-card)",
               textDecoration: "none", transition: "border-color 0.3s" }}
           >
             <div style={{ width: 48, height: 48, borderRadius: 14, background: "rgba(110,231,183,0.08)",
@@ -74,10 +74,10 @@ export default function Contact() {
               <Mail size={20} style={{ color: "#6EE7B7" }} />
             </div>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F7", marginBottom: 6 }}>Email Me</div>
-              <div style={{ fontSize: 13, color: "#A1A1AA" }}>bjsbainsla@gmail.com</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)", marginBottom: 6 }}>Email Me</div>
+              <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>bjsbainsla@gmail.com</div>
             </div>
-            <ExternalLink size={13} style={{ color: "#3A3A3E" }} />
+            <ExternalLink size={13} style={{ color: "var(--text-ghost)" }} />
           </motion.a>
 
           {/* Calendly */}
@@ -89,9 +89,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.2 }}
-            whileHover={{ y: -5, borderColor: "rgba(96,165,250,0.35)" }}
+            whileHover={{ y: -4, scale: 1.02, borderColor: "rgba(96,165,250,0.35)" }}
             style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
-              padding: 32, borderRadius: 16, border: "1px solid #2A2A2E", background: "#18181B",
+              padding: 32, borderRadius: 16, border: "1px solid var(--border)", background: "var(--bg-card)",
               textDecoration: "none", transition: "border-color 0.3s" }}
           >
             <div style={{ width: 48, height: 48, borderRadius: 14, background: "rgba(96,165,250,0.08)",
@@ -99,10 +99,10 @@ export default function Contact() {
               <Calendar size={20} style={{ color: "#60A5FA" }} />
             </div>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F7", marginBottom: 6 }}>Book a Call</div>
-              <div style={{ fontSize: 13, color: "#A1A1AA" }}>Schedule via Calendly</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)", marginBottom: 6 }}>Book a Call</div>
+              <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>Schedule via Calendly</div>
             </div>
-            <ExternalLink size={13} style={{ color: "#3A3A3E" }} />
+            <ExternalLink size={13} style={{ color: "var(--text-ghost)" }} />
           </motion.a>
 
         </div>
@@ -113,9 +113,9 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          style={{ textAlign: "center", paddingTop: 40, borderTop: "1px solid #2A2A2E" }}
+          style={{ textAlign: "center", paddingTop: 40, borderTop: "1px solid var(--border)" }}
         >
-          <p style={{ fontSize: 12, color: "#3A3A3E" }}>
+          <p style={{ fontSize: 12, color: "var(--text-ghost)" }}>
             © {new Date().getFullYear()} Bhanu Singh · GTM Automation Engineer
           </p>
         </motion.div>

@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: Clock, accent: "#6EE7B7",
     title: "Discover Jobs Earlier",
-    desc: "Automated monitoring catches job postings within minutes of going live — before your competitors see them.",
+    desc: "Automated monitoring catches job postings within minutes of going live - before your competitors see them.",
   },
   {
     icon: Target, accent: "#60A5FA",
@@ -15,20 +15,20 @@ const benefits = [
     desc: "AI-classified leads mean your team only reaches out to relevant opportunities, saving time on bad fits.",
   },
   {
-    icon: Trophy, accent: "#6EE7B7",
+    icon: Trophy, accent: "#A78BFA",
     title: "Higher Placement Rate",
     desc: "Being first to contact a hiring company dramatically increases your chance of winning the placement.",
   },
   {
-    icon: TrendingUp, accent: "#60A5FA",
+    icon: TrendingUp, accent: "#FBBF24",
     title: "Zero Manual Research",
-    desc: "Eliminates hours of daily manual job searching — your team focuses on calling, not searching.",
+    desc: "Eliminates hours of daily manual job searching - your team focuses on calling, not searching.",
   },
 ];
 
 export default function Benefits() {
   return (
-    <section style={{ padding: "80px 0", borderTop: "1px solid #2A2A2E", borderBottom: "1px solid #2A2A2E",
+    <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)",
       position: "relative", overflow: "hidden" }}>
 
       <div style={{ position:"absolute", inset:0, pointerEvents:"none",
@@ -48,7 +48,7 @@ export default function Benefits() {
             Business Impact
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em" }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em" }}>
             Why Recruitment Firms Use This
           </h2>
         </motion.div>
@@ -63,9 +63,9 @@ export default function Benefits() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.09 }}
-                whileHover={{ y: -6, borderColor: `${b.accent}30` }}
-                style={{ padding: 24, borderRadius: 16, border: "1px solid #2A2A2E",
-                  background: "#18181B", cursor: "default", transition: "all 0.3s" }}
+                whileHover={{ y: -6, scale: 1.01, borderColor: `${b.accent}30` }}
+                style={{ padding: 24, borderRadius: 16, border: "1px solid var(--border)",
+                  background: "var(--bg-card)", cursor: "default", transition: "all 0.3s" }}
               >
                 <motion.div
                   whileHover={{ scale: 1.1 }}
@@ -75,10 +75,10 @@ export default function Benefits() {
                 >
                   <Icon size={17} style={{ color: b.accent }} />
                 </motion.div>
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#F5F5F7", marginBottom: 8 }}>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)", marginBottom: 8 }}>
                   {b.title}
                 </h3>
-                <p style={{ fontSize: 13, color: "#A1A1AA", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.65 }}>
                   {b.desc}
                 </p>
               </motion.div>

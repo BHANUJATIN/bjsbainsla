@@ -4,19 +4,22 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, CalendarDays } from "lucide-react";
+import { Menu, X, CalendarDays, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
   { href: "/",            label: "Home" },
+  { href: "/about",       label: "About" },
   { href: "/engineering", label: "Engineering" },
   { href: "/recruitment", label: "Recruitment" },
   { href: "#contact",     label: "Contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname   = usePathname();
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -40,8 +43,8 @@ export default function Navbar() {
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
           height: 64,
-          borderBottom: scrolled ? "1px solid #2A2A2E" : "1px solid transparent",
-          background: scrolled ? "rgba(14,14,16,0.88)" : "transparent",
+          borderBottom: scrolled ? "1px solid var(--nav-border)" : "1px solid transparent",
+          background: scrolled ? "var(--nav-bg)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
           transition: "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
@@ -60,14 +63,13 @@ export default function Navbar() {
             }}>
               <span style={{ color: "#0E0E10", fontSize: 11, fontWeight: 800, letterSpacing: "-0.02em" }}>BS</span>
             </div>
-            <span style={{ color: "#F5F5F7", fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em" }}>
+            <span style={{ color: "var(--text-primary)", fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em" }}>
               Bhanu Singh
             </span>
           </Link>
 
           {/* Desktop nav links */}
-          <div style={{ display: "flex", alignItems: "center", gap: 2 }}
-            className="nav-desktop">
+          <div style={{ display: "flex", alignItems: "center", gap: 2 }} className="nav-desktop">
             {navLinks.map((link) => {
               const isActive = link.href !== "#contact" && pathname === link.href;
               return (
@@ -78,18 +80,18 @@ export default function Navbar() {
                   style={{
                     position: "relative", padding: "7px 14px", borderRadius: 8,
                     fontSize: 14, fontWeight: 500, textDecoration: "none",
-                    color: isActive ? "#F5F5F7" : "#71717A",
+                    color: isActive ? "var(--text-primary)" : "var(--text-muted)",
                     transition: "color 0.2s",
                   }}
-                  onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = "#F5F5F7"; }}
-                  onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "#71717A"; }}
+                  onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "var(--text-muted)"; }}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
                       style={{
                         position: "absolute", inset: 0, borderRadius: 8,
-                        background: "#18181B", border: "1px solid #2A2A2E", zIndex: -1,
+                        background: "var(--bg-card)", border: "1px solid var(--border)", zIndex: -1,
                       }}
                       transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                     />
@@ -101,34 +103,48 @@ export default function Navbar() {
           </div>
 
           {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}
-            className="nav-desktop">
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }} className="nav-desktop">
             <a
               href="mailto:bjsbainsla@gmail.com"
-              style={{ fontSize: 13, color: "#52525B", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#A1A1AA"}
-              onMouseLeave={e => e.currentTarget.style.color = "#52525B"}
+              style={{ fontSize: 13, color: "var(--text-ghost)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.color = "var(--text-secondary)"}
+              onMouseLeave={e => e.currentTarget.style.color = "var(--text-ghost)"}
             >
               bjsbainsla@gmail.com
             </a>
 
-            {/* Book a Call button */}
+            {/* Theme toggle */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              style={{
+                width: 34, height: 34, borderRadius: 9, flexShrink: 0,
+                background: "var(--bg-card)", border: "1px solid var(--border)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer",
+              }}
+              aria-label="Toggle theme"
+            >
+              {isDark
+                ? <Sun  size={14} style={{ color: "var(--text-muted)" }} />
+                : <Moon size={14} style={{ color: "var(--text-muted)" }} />
+              }
+            </motion.button>
+
+            {/* Book a Call */}
             <motion.a
               href="https://calendly.com/bjsbainsla"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(110,231,183,0.35)" }}
               whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 7,
-                padding: "8px 18px",
-                background: "#6EE7B7",
-                color: "#0A0A0B",
-                fontSize: 13, fontWeight: 700,
-                borderRadius: 9,
-                textDecoration: "none",
-                letterSpacing: "-0.01em",
-                boxShadow: "0 0 0 1px rgba(110,231,183,0.3)",
+                padding: "8px 18px", background: "#6EE7B7", color: "#0A0A0B",
+                fontSize: 13, fontWeight: 700, borderRadius: 9, textDecoration: "none",
+                letterSpacing: "-0.01em", boxShadow: "0 0 0 1px rgba(110,231,183,0.3)",
               }}
             >
               <CalendarDays size={14} strokeWidth={2.5} />
@@ -136,15 +152,32 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            style={{ background: "none", border: "none", cursor: "pointer",
-              color: "#71717A", padding: 4, display: "none" }}
-            className="nav-mobile-btn"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile: theme toggle + hamburger */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }} className="nav-mobile-btn">
+            <motion.button
+              onClick={toggleTheme}
+              whileTap={{ scale: 0.9 }}
+              style={{
+                width: 34, height: 34, borderRadius: 9,
+                background: "var(--bg-card)", border: "1px solid var(--border)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer",
+              }}
+              aria-label="Toggle theme"
+            >
+              {isDark
+                ? <Sun  size={14} style={{ color: "var(--text-muted)" }} />
+                : <Moon size={14} style={{ color: "var(--text-muted)" }} />
+              }
+            </motion.button>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{ background: "none", border: "none", cursor: "pointer",
+                color: "var(--text-muted)", padding: 4 }}
+            >
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -158,8 +191,8 @@ export default function Navbar() {
             transition={{ duration: 0.18 }}
             style={{
               position: "fixed", top: 64, left: 0, right: 0, zIndex: 49,
-              background: "rgba(14,14,16,0.97)", backdropFilter: "blur(20px)",
-              borderBottom: "1px solid #2A2A2E", padding: "16px 24px 20px",
+              background: "var(--nav-bg)", backdropFilter: "blur(20px)",
+              borderBottom: "1px solid var(--border)", padding: "16px 24px 20px",
             }}
           >
             <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 16 }}>
@@ -169,17 +202,17 @@ export default function Navbar() {
                   href={link.href}
                   onClick={link.href === "#contact" ? scrollToContact : () => setMobileOpen(false)}
                   style={{ padding: "11px 14px", borderRadius: 8, fontSize: 14,
-                    color: "#A1A1AA", textDecoration: "none",
-                    background: pathname === link.href ? "#18181B" : "transparent",
-                    border: pathname === link.href ? "1px solid #2A2A2E" : "1px solid transparent" }}
+                    color: "var(--text-secondary)", textDecoration: "none",
+                    background: pathname === link.href ? "var(--bg-card)" : "transparent",
+                    border: pathname === link.href ? "1px solid var(--border)" : "1px solid transparent" }}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-            <div style={{ borderTop: "1px solid #2A2A2E", paddingTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ borderTop: "1px solid var(--border)", paddingTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
               <a href="mailto:bjsbainsla@gmail.com"
-                style={{ fontSize: 13, color: "#52525B", textDecoration: "none", padding: "4px 14px" }}>
+                style={{ fontSize: 13, color: "var(--text-ghost)", textDecoration: "none", padding: "4px 14px" }}>
                 bjsbainsla@gmail.com
               </a>
               <a href="https://calendly.com/bjsbainsla" target="_blank" rel="noopener noreferrer"
@@ -194,13 +227,13 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Responsive visibility styles */}
+      {/* Responsive visibility */}
       <style>{`
-        .nav-desktop { display: flex !important; }
+        .nav-desktop    { display: flex !important; }
         .nav-mobile-btn { display: none !important; }
         @media (max-width: 700px) {
-          .nav-desktop { display: none !important; }
-          .nav-mobile-btn { display: block !important; }
+          .nav-desktop    { display: none !important; }
+          .nav-mobile-btn { display: flex !important; }
         }
       `}</style>
     </>

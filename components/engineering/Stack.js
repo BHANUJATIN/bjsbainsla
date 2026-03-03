@@ -13,7 +13,7 @@ const stackGroups = [
 
 export default function Stack() {
   return (
-    <section style={{ padding: "80px 0", borderTop: "1px solid #2A2A2E", borderBottom: "1px solid #2A2A2E" }}>
+    <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
       <div className="container-xl">
 
         <motion.div
@@ -28,7 +28,7 @@ export default function Stack() {
             Technical Arsenal
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em" }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em" }}>
             Full Stack + GTM Stack
           </h2>
         </motion.div>
@@ -42,7 +42,7 @@ export default function Stack() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ borderColor: "rgba(110,231,183,0.25)" }}
-              style={{ padding: 24, borderRadius: 16, border: "1px solid #2A2A2E", background: "#18181B",
+              style={{ padding: 24, borderRadius: 16, border: "1px solid var(--border)", background: "var(--bg-card)",
                 transition: "border-color 0.3s" }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
@@ -56,7 +56,7 @@ export default function Stack() {
                 {g.items.map(item => (
                   <span key={item}
                     style={{ padding: "6px 12px", fontSize: 12.5, fontWeight: 500, borderRadius: 8,
-                      border: "1px solid #2A2A2E", background: "#1F1F23", color: "#A1A1AA",
+                      border: "1px solid var(--border)", background: "var(--bg-card-hover)", color: "var(--text-secondary)",
                       cursor: "default", transition: "all 0.2s" }}>
                     {item}
                   </span>

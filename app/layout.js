@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Bhanu Singh — GTM Automation Engineer",
+  title: "Bhanu Singh - GTM Automation Engineer",
   description:
     "I design and build automated outbound and data pipelines for recruitment firms, fintech companies, and nonprofits. GTM automation, outbound infrastructure, and recruitment systems.",
   keywords: [
@@ -22,7 +23,7 @@ export const metadata = {
   ],
   authors: [{ name: "Bhanu Singh" }],
   openGraph: {
-    title: "Bhanu Singh — GTM Automation Engineer",
+    title: "Bhanu Singh - GTM Automation Engineer",
     description:
       "I design and build automated outbound and data pipelines for recruitment firms, fintech companies, and nonprofits.",
     type: "website",
@@ -31,10 +32,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">
-        <Navbar />
-        <main>{children}</main>
+        <ThemeProvider>
+          <Navbar />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

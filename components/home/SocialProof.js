@@ -1,119 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaLinkedin } from "react-icons/fa";
-import { SiN8N, SiMake, SiAirtable } from "react-icons/si";
-import { Code2 } from "lucide-react";
-
-/* ─── Custom letter-badge logos for tools not in icon libraries ─── */
-function Badge({ letters, bg, color }) {
-  return (
-    <div style={{
-      width: 34, height: 34, borderRadius: 9, flexShrink: 0,
-      background: bg, display: "flex", alignItems: "center", justifyContent: "center",
-    }}>
-      <span style={{ color, fontSize: letters.length > 2 ? 9 : 11, fontWeight: 800, letterSpacing: "-0.02em" }}>
-        {letters}
-      </span>
-    </div>
-  );
-}
 
 const tools = [
-  {
-    name: "Clay",
-    logo: <Badge letters="C" bg="rgba(0,166,126,0.18)" color="#00A67E" />,
-    color: "#00A67E",
-  },
-  {
-    name: "Smartlead",
-    logo: <Badge letters="SL" bg="rgba(124,58,237,0.18)" color="#A78BFA" />,
-    color: "#A78BFA",
-  },
-  {
-    name: "HeyReach",
-    logo: <Badge letters="HR" bg="rgba(14,165,233,0.18)" color="#38BDF8" />,
-    color: "#38BDF8",
-  },
-  {
-    name: "Instantly",
-    logo: <Badge letters="I" bg="rgba(59,130,246,0.18)" color="#60A5FA" />,
-    color: "#60A5FA",
-  },
-  {
-    name: "Apollo",
-    logo: <Badge letters="A" bg="rgba(99,102,241,0.18)" color="#818CF8" />,
-    color: "#818CF8",
-  },
-  {
-    name: "LinkedIn Sales Nav",
-    logo: (
-      <div style={{ width:34, height:34, borderRadius:9, background:"rgba(10,102,194,0.18)",
-        display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <FaLinkedin size={16} style={{ color:"#0A66C2" }} />
-      </div>
-    ),
-    color: "#0A66C2",
-  },
-  {
-    name: "Make",
-    logo: (
-      <div style={{ width:34, height:34, borderRadius:9, background:"rgba(147,51,234,0.18)",
-        display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <SiMake size={15} style={{ color:"#C084FC" }} />
-      </div>
-    ),
-    color: "#C084FC",
-  },
-  {
-    name: "n8n",
-    logo: (
-      <div style={{ width:34, height:34, borderRadius:9, background:"rgba(240,96,34,0.18)",
-        display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <SiN8N size={15} style={{ color:"#F06022" }} />
-      </div>
-    ),
-    color: "#F06022",
-  },
-  {
-    name: "Airtable",
-    logo: (
-      <div style={{ width:34, height:34, borderRadius:9, background:"rgba(24,191,255,0.18)",
-        display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <SiAirtable size={15} style={{ color:"#18BFFF" }} />
-      </div>
-    ),
-    color: "#18BFFF",
-  },
-  {
-    name: "Apify",
-    logo: <Badge letters="AP" bg="rgba(0,178,122,0.18)" color="#00B27A" />,
-    color: "#00B27A",
-  },
-  {
-    name: "Custom APIs",
-    logo: (
-      <div style={{ width:34, height:34, borderRadius:9, background:"rgba(110,231,183,0.12)",
-        display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <Code2 size={15} style={{ color:"#6EE7B7" }} />
-      </div>
-    ),
-    color: "#6EE7B7",
-  },
+  // Automation platforms
+  { name: "Clay",               color: "#00A67E" },
+  { name: "Make.com",           color: "#C084FC" },
+  { name: "n8n",                color: "#F06022" },
+  { name: "Airtable",           color: "#18BFFF" },
+  { name: "Zapier",             color: "#FF4A00" },
+  // Outreach
+  { name: "Smartlead",          color: "#A78BFA" },
+  { name: "Instantly",          color: "#60A5FA" },
+  { name: "HeyReach",           color: "#38BDF8" },
+  { name: "Lemlist",            color: "#FF6B6B" },
+  // Prospecting & data
+  { name: "Apollo",             color: "#818CF8" },
+  { name: "LinkedIn Sales Nav", color: "#0A66C2" },
+  { name: "Hunter.io",          color: "#FB923C" },
+  { name: "Apify",              color: "#00B27A" },
+  { name: "Phantombuster",      color: "#7C3AED" },
+  { name: "RapidAPI",           color: "#6EE7B7" },
+  // CRMs
+  { name: "HubSpot",            color: "#FF7A59" },
+  { name: "Salesforce",         color: "#00A1E0" },
+  { name: "Pipedrive",          color: "#4CAF50" },
+  { name: "Close CRM",          color: "#FBBF24" },
+  // AI
+  { name: "Claude",             color: "#D4956A" },
+  { name: "OpenAI",             color: "#74AA9C" },
+  // Dev & custom
+  { name: "Node.js",            color: "#68A063" },
+  { name: "Python",             color: "#3B82F6" },
+  { name: "Custom APIs",        color: "#A78BFA" },
 ];
 
 const clients = [
-  { label: "Fintech Firms",            icon: "🏦" },
-  { label: "Recruitment Agencies",     icon: "🎯" },
-  { label: "Non-Profit Organizations", icon: "🌱" },
+  { label: "Recruitment Agencies",     icon: "🎯", accent: "#6EE7B7" },
+  { label: "Fintech Firms",            icon: "🏦", accent: "#60A5FA" },
+  { label: "Medical & Healthcare",     icon: "🏥", accent: "#F472B6" },
+  { label: "Non-Profit Organizations", icon: "🌱", accent: "#34D399" },
+  { label: "Manufacturing",            icon: "🏭", accent: "#FBBF24" },
+  { label: "Law & Legal",              icon: "⚖️", accent: "#A78BFA" },
+  { label: "E-commerce",               icon: "🛒", accent: "#FB923C" },
 ];
 
 export default function SocialProof() {
   return (
-    <section style={{ borderTop:"1px solid #2A2A2E", borderBottom:"1px solid #2A2A2E", padding:"60px 0" }}>
+    <section style={{ borderTop:"1px solid var(--border)", borderBottom:"1px solid var(--border)", padding:"60px 0" }}>
       <div className="container-xl">
 
-        {/* ── Worked With row ── */}
+        {/* ─── Worked With ─── */}
         <motion.div
           initial={{ opacity:0, y:16 }}
           whileInView={{ opacity:1, y:0 }}
@@ -121,57 +58,67 @@ export default function SocialProof() {
           transition={{ duration:0.55 }}
           style={{ display:"flex", flexWrap:"wrap", alignItems:"center", gap:20, marginBottom:48 }}
         >
-          <p style={{ fontSize:11, fontWeight:600, color:"#52525B",
+          <p style={{ fontSize:11, fontWeight:600, color:"var(--text-faint)",
             textTransform:"uppercase", letterSpacing:"0.12em", whiteSpace:"nowrap" }}>
             Worked With
           </p>
-          <div style={{ width:1, height:18, background:"#2A2A2E", flexShrink:0 }} />
+          <div style={{ width:1, height:18, background:"var(--border)", flexShrink:0 }} />
           <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
-            {clients.map(c => (
-              <div key={c.label}
+            {clients.map((c, i) => (
+              <motion.div
+                key={c.label}
+                initial={{ opacity:0, y:8 }}
+                whileInView={{ opacity:1, y:0 }}
+                viewport={{ once:true }}
+                transition={{ duration:0.3, delay: i * 0.05 }}
+                whileHover={{ y:-2, borderColor:`${c.accent}55`, background:`${c.accent}0D` }}
                 style={{ display:"inline-flex", alignItems:"center", gap:8,
-                  padding:"7px 14px", borderRadius:100, border:"1px solid #2A2A2E",
-                  background:"#18181B", fontSize:13, color:"#A1A1AA" }}>
+                  padding:"7px 14px", borderRadius:100,
+                  border:`1px solid ${c.accent}30`,
+                  background:`${c.accent}08`,
+                  cursor:"default", transition:"all 0.2s" }}
+              >
                 <span style={{ fontSize:14 }}>{c.icon}</span>
-                <span>{c.label}</span>
-              </div>
+                <span style={{ fontSize:13, color: c.accent, fontWeight:500 }}>{c.label}</span>
+              </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* ── Tools heading ── */}
+        {/* ─── Tools ─── */}
         <motion.p
           initial={{ opacity:0 }}
           whileInView={{ opacity:1 }}
           viewport={{ once:true }}
           transition={{ duration:0.5 }}
-          style={{ fontSize:11, fontWeight:600, color:"#52525B",
+          style={{ fontSize:11, fontWeight:600, color:"var(--text-faint)",
             textTransform:"uppercase", letterSpacing:"0.12em",
             textAlign:"center", marginBottom:24 }}
         >
           Tools I Work With
         </motion.p>
 
-        {/* ── Tool logos grid ── */}
-        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:10 }}>
+        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:8 }}>
           {tools.map((tool, i) => (
             <motion.div
               key={tool.name}
               initial={{ opacity:0, y:10 }}
               whileInView={{ opacity:1, y:0 }}
               viewport={{ once:true }}
-              transition={{ duration:0.35, delay: i * 0.04 }}
-              whileHover={{ y:-3, borderColor:`${tool.color}40`, background:"#1F1F23" }}
+              transition={{ duration:0.3, delay: i * 0.03 }}
+              whileHover={{ y:-2, borderColor:`${tool.color}45`, background:`${tool.color}0A` }}
               style={{
-                display:"inline-flex", alignItems:"center", gap:10,
-                padding:"8px 14px 8px 8px",
-                borderRadius:12, border:"1px solid #2A2A2E", background:"#18181B",
-                cursor:"default", transition:"all 0.22s",
+                display:"inline-flex", alignItems:"center", gap:8,
+                padding:"7px 14px",
+                borderRadius:100, border:"1px solid var(--border)", background:"var(--bg-card)",
+                cursor:"default", transition:"all 0.2s",
               }}
             >
-              {tool.logo}
-              <span style={{ fontSize:13, fontWeight:500, color:"#A1A1AA",
-                letterSpacing:"-0.01em", lineHeight:1 }}>
+              <div style={{ width:6, height:6, borderRadius:"50%",
+                background: tool.color, flexShrink:0,
+                boxShadow:`0 0 5px ${tool.color}70` }} />
+              <span style={{ fontSize:13, fontWeight:500, color:"var(--text-secondary)",
+                letterSpacing:"-0.01em" }}>
                 {tool.name}
               </span>
             </motion.div>

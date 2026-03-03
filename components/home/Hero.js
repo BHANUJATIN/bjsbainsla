@@ -133,11 +133,8 @@ export default function Hero() {
       {/* Canvas */}
       <NodeCanvas />
 
-      {/* Dark vignette — keeps text readable */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 70% at 50% 40%, rgba(14,14,16,0.25) 0%, rgba(14,14,16,0.75) 60%, #0E0E10 100%)" }}
-      />
+      {/* Vignette - theme-aware, keeps text readable */}
+      <div className="absolute inset-0 pointer-events-none hero-vignette" />
 
       {/* Glow orbs */}
       <div className="absolute pointer-events-none"
@@ -147,18 +144,18 @@ export default function Hero() {
         style={{ bottom:"25%", right:"15%", width:360, height:360, borderRadius:"50%",
           background:"radial-gradient(circle, rgba(96,165,250,0.10) 0%, transparent 70%)", filter:"blur(60px)" }} />
 
-      {/* Content — CSS animations = visible even before JS hydrates */}
+      {/* Content - CSS animations = visible even before JS hydrates */}
       <div
         className="relative"
         style={{ zIndex: 10, width:"100%", maxWidth:900, margin:"0 auto", padding:"120px 24px 80px", textAlign:"center" }}
       >
         {/* Status badge */}
         <div
-          className="anim-fade-in delay-100"
+          className="anim-fade-in delay-100 badge-glow"
           style={{ display:"inline-flex", alignItems:"center", gap:8,
             padding:"8px 16px", borderRadius:100,
-            border:"1px solid #2A2A2E", background:"rgba(24,24,27,0.8)",
-            backdropFilter:"blur(12px)", fontSize:12, color:"#A1A1AA", marginBottom:32 }}
+            border:"1px solid var(--border)", background:"var(--bg-card)",
+            backdropFilter:"blur(12px)", fontSize:12, color:"var(--text-secondary)", marginBottom:32 }}
         >
           <span style={{ width:6, height:6, borderRadius:"50%", background:"#6EE7B7",
             display:"inline-block", animation:"pulse 2s infinite" }} />
@@ -170,7 +167,7 @@ export default function Hero() {
         <h1
           className="anim-fade-up delay-200"
           style={{ fontSize:"clamp(2.4rem, 6vw, 4.5rem)", fontWeight:700,
-            lineHeight:1.08, letterSpacing:"-0.03em", color:"#F5F5F7", marginBottom:24 }}
+            lineHeight:1.08, letterSpacing:"-0.03em", color:"var(--text-primary)", marginBottom:24 }}
         >
           GTM Automation
           <br />
@@ -180,15 +177,11 @@ export default function Hero() {
         {/* Sub */}
         <p
           className="anim-fade-up delay-300"
-          style={{ fontSize:"clamp(1rem, 2vw, 1.2rem)", color:"#A1A1AA",
+          style={{ fontSize:"clamp(1rem, 2vw, 1.2rem)", color:"var(--text-secondary)",
             maxWidth:580, margin:"0 auto 40px", lineHeight:1.7 }}
         >
-          I design and build automated outbound and data pipelines for{" "}
-          <span style={{ color:"#F5F5F7" }}>recruitment firms</span>,{" "}
-          <span style={{ color:"#F5F5F7" }}>fintech companies</span>, and{" "}
-          <span style={{ color:"#F5F5F7" }}>nonprofits</span>.
-          <br />
-          From lead discovery to outreach infrastructure — fully automated.
+          Automated outbound and data pipelines across recruitment, fintech, medical,
+          non-profit, manufacturing, legal, and e-commerce — from lead discovery to outreach infrastructure, fully automated.
         </p>
 
         {/* CTAs */}
@@ -202,7 +195,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ y: -3, boxShadow:"0 20px 40px rgba(110,231,183,0.25)" }}
             style={{ display:"inline-flex", alignItems:"center", gap:8,
-              padding:"14px 28px", background:"#6EE7B7", color:"#0E0E10",
+              padding:"14px 28px", background:"#6EE7B7", color:"var(--bg-page)",
               fontWeight:600, fontSize:15, borderRadius:12, textDecoration:"none",
               transition:"background 0.2s" }}
           >
@@ -214,8 +207,8 @@ export default function Hero() {
             onClick={() => document.getElementById("services")?.scrollIntoView({ behavior:"smooth" })}
             whileHover={{ y: -3, borderColor:"rgba(110,231,183,0.5)" }}
             style={{ display:"inline-flex", alignItems:"center", gap:8,
-              padding:"14px 28px", background:"transparent", color:"#F5F5F7",
-              fontWeight:500, fontSize:15, borderRadius:12, border:"1px solid #2A2A2E",
+              padding:"14px 28px", background:"transparent", color:"var(--text-primary)",
+              fontWeight:500, fontSize:15, borderRadius:12, border:"1px solid var(--border)",
               cursor:"pointer", transition:"border-color 0.2s" }}
           >
             See My Systems
@@ -234,7 +227,7 @@ export default function Hero() {
         <motion.div
           animate={{ y:[0,8,0] }}
           transition={{ duration:2, repeat:Infinity, ease:"easeInOut" }}
-          style={{ width:22, height:36, border:"1px solid #2A2A2E", borderRadius:11,
+          style={{ width:22, height:36, border:"1px solid var(--border)", borderRadius:11,
             display:"flex", alignItems:"flex-start", justifyContent:"center", paddingTop:6 }}
         >
           <div style={{ width:4, height:8, background:"#6EE7B7", borderRadius:2 }} />

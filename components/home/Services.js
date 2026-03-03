@@ -22,14 +22,14 @@ const services = [
     icon: Brain,
     title: "Lead Intelligence",
     description: "Automations to detect company activity, hiring signals, and engagement patterns across platforms.",
-    accent: "#6EE7B7",
+    accent: "#A78BFA",
     tag: "Intelligence",
   },
   {
     icon: Users,
     title: "Warm Network Mapping",
     description: "Systems that identify mutual connections and relationship paths before outreach to increase reply rates.",
-    accent: "#60A5FA",
+    accent: "#FBBF24",
     tag: "Strategy",
   },
 ];
@@ -37,8 +37,8 @@ const services = [
 const cardStyle = (accent) => ({
   padding: 28,
   borderRadius: 16,
-  border: `1px solid #2A2A2E`,
-  background: "#18181B",
+  border: `1px solid var(--border)`,
+  background: "var(--bg-card)",
   cursor: "default",
   position: "relative",
   overflow: "hidden",
@@ -62,7 +62,7 @@ export default function Services() {
             What I Build
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "#F5F5F7", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
+            color: "var(--text-primary)", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
             GTM Systems I Build
           </h2>
         </motion.div>
@@ -78,7 +78,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.55, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -6, borderColor: `${s.accent}35` }}
+                whileHover={{ y: -6, scale: 1.01, borderColor: `${s.accent}35` }}
                 style={cardStyle(s.accent)}
               >
                 {/* Hover bg */}
@@ -98,10 +98,10 @@ export default function Services() {
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "#F5F5F7", marginBottom: 10 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)", marginBottom: 10 }}>
                   {s.title}
                 </h3>
-                <p style={{ fontSize: 13.5, color: "#A1A1AA", lineHeight: 1.65 }}>
+                <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.65 }}>
                   {s.description}
                 </p>
               </motion.div>

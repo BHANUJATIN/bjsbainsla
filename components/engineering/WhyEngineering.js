@@ -14,7 +14,7 @@ const capabilities = [
 
 export default function WhyEngineering() {
   return (
-    <section style={{ padding: "96px 0", borderTop: "1px solid #2A2A2E", position: "relative", overflow: "hidden" }}>
+    <section style={{ padding: "96px 0", borderTop: "1px solid var(--border)", position: "relative", overflow: "hidden" }}>
 
       {/* Glow */}
       <div style={{ position:"absolute", top:0, right:0, width:400, height:400, pointerEvents:"none",
@@ -35,20 +35,20 @@ export default function WhyEngineering() {
               The Advantage
             </p>
             <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-              color: "#F5F5F7", letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 20 }}>
+              color: "var(--text-primary)", letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 20 }}>
               Why Engineering
               <br />
               <span className="gradient-text">Changes Everything</span>
             </h2>
-            <p style={{ fontSize: 15, color: "#A1A1AA", lineHeight: 1.75, marginBottom: 16 }}>
+            <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: 16 }}>
               Most GTM tools stop where APIs end. Most GTM operators can't go further.
             </p>
-            <p style={{ fontSize: 15, color: "#A1A1AA", lineHeight: 1.75, marginBottom: 28 }}>
-              With a full-stack engineering background, I extend automation platforms with custom code —
+            <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: 28 }}>
+              With a full-stack engineering background, I extend automation platforms with custom code -
               building capabilities that pure no-code operators cannot replicate.
             </p>
 
-            <div style={{ padding: 20, borderRadius: 14, border: "1px solid #2A2A2E", background: "#18181B" }}>
+            <div style={{ padding: 20, borderRadius: 14, border: "1px solid var(--border)", background: "var(--bg-card)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <Code2 size={13} style={{ color: "#6EE7B7" }} />
                 <span style={{ fontSize: 11, fontWeight: 600, color: "#6EE7B7",
@@ -56,8 +56,8 @@ export default function WhyEngineering() {
                   B.Tech, Computer Science
                 </span>
               </div>
-              <p style={{ fontSize: 13.5, color: "#A1A1AA", lineHeight: 1.65 }}>
-                IIITM Gwalior — combined with 1.5+ years of applied GTM automation experience.
+              <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                IIITM Gwalior - combined with 1.5+ years of applied GTM automation experience.
               </p>
             </div>
           </motion.div>
@@ -79,15 +79,15 @@ export default function WhyEngineering() {
                 transition={{ duration: 0.45, delay: i * 0.07 }}
                 whileHover={{ borderColor: "rgba(110,231,183,0.3)", x: 4 }}
                 style={{ display: "flex", alignItems: "center", gap: 14,
-                  padding: "14px 16px", borderRadius: 12, border: "1px solid #2A2A2E",
-                  background: "#18181B", cursor: "default", transition: "all 0.2s" }}
+                  padding: "14px 16px", borderRadius: 12, border: "1px solid var(--border)",
+                  background: "var(--bg-card)", cursor: "default", transition: "all 0.2s" }}
               >
                 <div style={{ width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
                   background: "rgba(110,231,183,0.1)", border: "1px solid rgba(110,231,183,0.2)",
                   display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check size={12} style={{ color: "#6EE7B7" }} />
                 </div>
-                <span style={{ fontSize: 14, color: "#A1A1AA" }}>{cap}</span>
+                <span style={{ fontSize: 14, color: "var(--text-secondary)" }}>{cap}</span>
               </motion.div>
             ))}
           </motion.div>
