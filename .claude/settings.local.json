@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --js --tailwind --eslint --app --no-src-dir --no-import-alias --yes)",
+      "Bash(npx create-next-app@latest . --js --tailwind --eslint --app --no-src-dir --no-import-alias --yes --name \"gtme-landing\")",
+      "Bash(robocopy \"d:/Bhanu/GTME/gtme-landing\" \"d:/Bhanu/GTME/landing page\" /E /XD node_modules .git /NFL /NDL /NJH /NJS)",
+      "Bash(robocopy \"d:\\\\Bhanu\\\\GTME\\\\gtme-landing\" \"d:\\\\Bhanu\\\\GTME\\\\landing page\" /E /XD node_modules \".git\" /NFL /NDL /NJH /NJS)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(npm run build)",
+      "Bash(npm install react-icons)",
+      "Bash(node -e \"const si = require\\(''react-icons/si''\\); const names = Object.keys\\(si\\).filter\\(k => [''SiLinkedin'',''SiAirtable'',''SiN8n'',''SiMake'',''SiApify'',''SiApollo'',''SiHubspot''].includes\\(k\\)\\); console.log\\(names.join\\('', ''\\)\\);\")",
+      "Bash(node -e \"const si = require\\(''react-icons/si''\\); const keys = Object.keys\\(si\\); const targets = [''linkedin'',''airtable'',''n8n'',''make'',''apify'',''apollo'',''clay'',''smartlead'',''instantly'',''heyreach'']; targets.forEach\\(t => { const found = keys.find\\(k => k.toLowerCase\\(\\).includes\\(t\\)\\); console.log\\(t + '':'', found || ''NOT FOUND''\\); }\\);\")",
+      "Bash(node -e \"const si = require\\(''react-icons/si''\\); const keys = Object.keys\\(si\\); [''SiLinkedin'',''SiLinkedIn'',''SiN8N'',''SiMake'',''SiZapier'',''SiNotion'',''SiSlack''].forEach\\(k => console.log\\(k, '':'', !!si[k]\\)\\);\")"
+    ]
+  }
+}
