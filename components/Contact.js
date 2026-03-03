@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Mail, Calendar, ExternalLink } from "lucide-react";
 
@@ -21,6 +22,24 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: 52 }}
         >
+          {/* Profile photo */}
+          <div style={{ marginBottom: 20 }}>
+            <Image
+              src="/profile.jpeg"
+              alt="Bhanu Singh"
+              width={80}
+              height={80}
+              style={{
+                borderRadius: 14,
+                border: "1px solid #2A2A2E",
+                objectFit: "cover",
+                objectPosition: "center top",
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
+          </div>
+
           <p style={{ fontSize: 11, fontWeight: 600, color: "#6EE7B7", textTransform: "uppercase",
             letterSpacing: "0.12em", marginBottom: 14 }}>
             Let's Talk
