@@ -93,22 +93,22 @@ const entries = [
 
 export default function Timeline() {
   return (
-    <section style={{ padding: "80px 0", borderTop: "1px solid var(--border)" }}>
+    <section style={{ padding: "96px 0", borderTop: "1px solid var(--border)" }}>
       <div className="container-xl">
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: 56 }}
+          transition={{ duration: 0.45 }}
+          style={{ marginBottom: 64 }}
         >
-          <p style={{ fontSize: 11, fontWeight: 600, color: "#A78BFA", textTransform: "uppercase",
-            letterSpacing: "0.12em", marginBottom: 14 }}>
+          <p style={{ fontSize: 11, fontWeight: 500, color: "var(--text-muted)",
+            textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
             Journey
           </p>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "var(--text-primary)", letterSpacing: "-0.025em" }}>
+            color: "var(--text-primary)", letterSpacing: "-0.04em" }}>
             Education &amp; Experience
           </h2>
         </motion.div>
@@ -120,80 +120,71 @@ export default function Timeline() {
             return (
               <motion.div
                 key={entry.id}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: 0.04 }}
-                style={{ display: "flex", gap: 20, alignItems: "flex-start", marginBottom: isLast ? 0 : 20 }}
+                transition={{ duration: 0.4, delay: 0.04 }}
+                style={{ display: "flex", gap: 24, alignItems: "flex-start",
+                  marginBottom: isLast ? 0 : 16 }}
               >
-                {/* Left: dot + connecting line */}
+                {/* Left: dot + line */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center",
-                  flexShrink: 0, paddingTop: 22 }}>
-                  <motion.div
-                    whileHover={{ scale: 1.4 }}
-                    style={{ width: 12, height: 12, borderRadius: "50%",
-                      background: entry.accent, boxShadow: `0 0 10px ${entry.accent}55`,
-                      border: `2px solid ${entry.accent}35`, flexShrink: 0, zIndex: 1 }}
-                  />
+                  flexShrink: 0, paddingTop: 24 }}>
+                  <div style={{ width: 10, height: 10, borderRadius: "50%",
+                    background: entry.accent, flexShrink: 0, zIndex: 1 }} />
                   {!isLast && (
-                    <div style={{ width: 2, flex: 1, minHeight: 28, background: "var(--border)",
+                    <div style={{ width: 1, flex: 1, minHeight: 28, background: "var(--border)",
                       marginTop: 8, marginBottom: -8 }} />
                   )}
                 </div>
 
-                {/* Right: entry card */}
+                {/* Right: card */}
                 <motion.div
-                  whileHover={{ borderColor: `${entry.accent}35` }}
-                  style={{ flex: 1, padding: "20px 24px", borderRadius: 16,
+                  whileHover={{ borderColor: `rgba(255,255,255,0.1)` }}
+                  style={{ flex: 1, padding: "24px 28px", borderRadius: 12,
                     border: "1px solid var(--border)", background: "var(--bg-card)",
-                    transition: "border-color 0.25s", marginBottom: isLast ? 0 : 8 }}
+                    transition: "border-color 0.2s", marginBottom: isLast ? 0 : 4 }}
                 >
-                  {/* Type badge + period */}
+                  {/* Label + period row */}
                   <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center",
-                    gap: 10, marginBottom: 14 }}>
-                    <div style={{ display: "inline-flex", alignItems: "center", gap: 6,
-                      padding: "4px 10px", borderRadius: 100,
-                      background: `${entry.accent}12`, border: `1px solid ${entry.accent}28` }}>
-                      <Icon size={11} style={{ color: entry.accent }} />
-                      <span style={{ fontSize: 10, fontWeight: 700, color: entry.accent,
-                        textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                        {entry.typeLabel}
-                      </span>
-                    </div>
-                    <span style={{ fontSize: 12, color: "var(--text-faint)", fontWeight: 500,
-                      letterSpacing: "0.02em" }}>
+                    gap: 12, marginBottom: 16 }}>
+                    <span style={{ fontSize: 10.5, fontWeight: 600, color: entry.accent,
+                      textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                      {entry.typeLabel}
+                    </span>
+                    <span style={{ width: 3, height: 3, borderRadius: "50%",
+                      background: "var(--border)", flexShrink: 0 }} />
+                    <span style={{ fontSize: 12, color: "var(--text-muted)",
+                      letterSpacing: "-0.01em" }}>
                       {entry.period}
                     </span>
                   </div>
 
-                  {/* Title */}
                   <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)",
-                    letterSpacing: "-0.02em", lineHeight: 1.35, marginBottom: 6 }}>
+                    letterSpacing: "-0.025em", lineHeight: 1.35, marginBottom: 6 }}>
                     {entry.title}
                   </h3>
 
-                  {/* Organisation */}
                   <p style={{ fontSize: 13, color: entry.accent, fontWeight: 500,
-                    marginBottom: 16, opacity: 0.8 }}>
+                    marginBottom: 20, letterSpacing: "-0.01em" }}>
                     {entry.org}
                   </p>
 
-                  {/* Description */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
                     {entry.paragraphs.map((para, j) => (
-                      <p key={j} style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7 }}>
+                      <p key={j} style={{ fontSize: 15, color: "var(--text-secondary)",
+                        lineHeight: 1.75 }}>
                         {para}
                       </p>
                     ))}
                   </div>
 
-                  {/* Tech tags */}
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {entry.tags.map(tag => (
                       <span key={tag} style={{ fontSize: 11, color: "var(--text-muted)",
-                        padding: "3px 10px", borderRadius: 100,
+                        padding: "4px 11px", borderRadius: 100,
                         border: "1px solid var(--border)", background: "var(--bg-card-hover)",
-                        letterSpacing: "0.02em" }}>
+                        letterSpacing: "-0.005em" }}>
                         {tag}
                       </span>
                     ))}

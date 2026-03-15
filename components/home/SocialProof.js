@@ -1,131 +1,128 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee";
+import { useTheme } from "@/components/ThemeProvider";
 
 const tools = [
-  // Automation platforms
-  { name: "Clay",               color: "#00A67E" },
-  { name: "Make.com",           color: "#C084FC" },
-  { name: "n8n",                color: "#F06022" },
-  { name: "Airtable",           color: "#18BFFF" },
-  { name: "Zapier",             color: "#FF4A00" },
-  // Outreach
-  { name: "Smartlead",          color: "#A78BFA" },
-  { name: "Instantly",          color: "#60A5FA" },
-  { name: "HeyReach",           color: "#38BDF8" },
-  { name: "Lemlist",            color: "#FF6B6B" },
-  // Prospecting & data
-  { name: "Apollo",             color: "#818CF8" },
-  { name: "LinkedIn Sales Nav", color: "#0A66C2" },
-  { name: "Hunter.io",          color: "#FB923C" },
-  { name: "Apify",              color: "#00B27A" },
-  { name: "Phantombuster",      color: "#7C3AED" },
-  { name: "RapidAPI",           color: "#6EE7B7" },
-  // CRMs
-  { name: "HubSpot",            color: "#FF7A59" },
-  { name: "Salesforce",         color: "#00A1E0" },
-  { name: "Pipedrive",          color: "#4CAF50" },
-  { name: "Close CRM",          color: "#FBBF24" },
-  // AI
-  { name: "Claude",             color: "#D4956A" },
-  { name: "OpenAI",             color: "#74AA9C" },
-  // Dev & custom
-  { name: "Node.js",            color: "#68A063" },
-  { name: "Python",             color: "#3B82F6" },
-  { name: "Custom APIs",        color: "#A78BFA" },
+  { name: "Clay",      src: "/svgs/clay.png" },
+  { name: "Make",      src: "/svgs/make.png" },
+  { name: "n8n",       src: "/svgs/n8n.png" },
+  { name: "Airtable",  src: "/svgs/airtable.png" },
+  { name: "Zapier",    src: "/svgs/zapier.png" },
+  { name: "Instantly", src: "/svgs/Instantly.png" },
+  { name: "HeyReach",  src: "/svgs/heyreach.png" },
+  { name: "Apollo",    src: "/svgs/apollo.png" },
+  { name: "LinkedIn",  src: "/svgs/linkedin.png" },
+  { name: "Apify",     src: "/svgs/apify.png" },
 ];
 
 const clients = [
-  { label: "Recruitment Agencies",     icon: "🎯", accent: "#6EE7B7" },
-  { label: "Fintech Firms",            icon: "🏦", accent: "#60A5FA" },
-  { label: "Medical & Healthcare",     icon: "🏥", accent: "#F472B6" },
-  { label: "Non-Profit Organizations", icon: "🌱", accent: "#34D399" },
-  { label: "Manufacturing",            icon: "🏭", accent: "#FBBF24" },
-  { label: "Law & Legal",              icon: "⚖️", accent: "#A78BFA" },
-  { label: "E-commerce",               icon: "🛒", accent: "#FB923C" },
+  { label: "Recruitment Agencies",     accent: "#6EE7B7" },
+  { label: "Fintech Firms",            accent: "#60A5FA" },
+  { label: "Medical & Healthcare",     accent: "#F472B6" },
+  { label: "Non-Profit Organizations", accent: "#34D399" },
+  { label: "Manufacturing",            accent: "#FBBF24" },
+  { label: "Law & Legal",              accent: "#A78BFA" },
+  { label: "E-commerce",               accent: "#FB923C" },
 ];
 
 export default function SocialProof() {
+  const { isDark } = useTheme();
+  const gradientBg = isDark ? "#0E0E10" : "#F5F5F7";
+
   return (
-    <section style={{ borderTop:"1px solid var(--border)", borderBottom:"1px solid var(--border)", padding:"60px 0" }}>
+    <section style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "64px 0" }}>
       <div className="container-xl">
 
-        {/* ─── Worked With ─── */}
+        {/* ─── Industries ─── */}
         <motion.div
-          initial={{ opacity:0, y:16 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.55 }}
-          style={{ display:"flex", flexWrap:"wrap", alignItems:"center", gap:20, marginBottom:48 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          style={{ marginBottom: 52 }}
         >
-          <p style={{ fontSize:11, fontWeight:600, color:"var(--text-faint)",
-            textTransform:"uppercase", letterSpacing:"0.12em", whiteSpace:"nowrap" }}>
-            Worked With
+          <p style={{ fontSize: 11, fontWeight: 500, color: "var(--text-ghost)",
+            textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 20 }}>
+            Industries
           </p>
-          <div style={{ width:1, height:18, background:"var(--border)", flexShrink:0 }} />
-          <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 0" }}>
             {clients.map((c, i) => (
-              <motion.div
+              <motion.span
                 key={c.label}
-                initial={{ opacity:0, y:8 }}
-                whileInView={{ opacity:1, y:0 }}
-                viewport={{ once:true }}
-                transition={{ duration:0.3, delay: i * 0.05 }}
-                whileHover={{ y:-2, borderColor:`${c.accent}55`, background:`${c.accent}0D` }}
-                style={{ display:"inline-flex", alignItems:"center", gap:8,
-                  padding:"7px 14px", borderRadius:100,
-                  border:`1px solid ${c.accent}30`,
-                  background:`${c.accent}08`,
-                  cursor:"default", transition:"all 0.2s" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="industry-item"
+                style={{
+                  fontWeight: 600,
+                  fontSize: "clamp(1rem, 2vw, 1.3rem)",
+                  color: "var(--text-muted)",
+                  cursor: "default",
+                  transition: "color 0.2s",
+                  lineHeight: 1.35,
+                  "--hover-color": c.accent,
+                }}
               >
-                <span style={{ fontSize:14 }}>{c.icon}</span>
-                <span style={{ fontSize:13, color: c.accent, fontWeight:500 }}>{c.label}</span>
-              </motion.div>
+                {c.label}
+                {i < clients.length - 1 && (
+                  <span style={{ color: "var(--border)", fontFamily: "var(--font-inter)", fontWeight: 300,
+                    fontSize: "1rem", margin: "0 14px", verticalAlign: "middle" }}>
+                    /
+                  </span>
+                )}
+              </motion.span>
             ))}
           </div>
         </motion.div>
 
-        {/* ─── Tools ─── */}
-        <motion.p
-          initial={{ opacity:0 }}
-          whileInView={{ opacity:1 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.5 }}
-          style={{ fontSize:11, fontWeight:600, color:"var(--text-faint)",
-            textTransform:"uppercase", letterSpacing:"0.12em",
-            textAlign:"center", marginBottom:24 }}
-        >
-          Tools I Work With
-        </motion.p>
+        {/* ─── Tools marquee ─── */}
+        <div>
+          <p style={{ fontSize: 11, fontWeight: 500, color: "var(--text-ghost)",
+            textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 24 }}>
+            Tools I Work With
+          </p>
 
-        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:8 }}>
-          {tools.map((tool, i) => (
-            <motion.div
-              key={tool.name}
-              initial={{ opacity:0, y:10 }}
-              whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true }}
-              transition={{ duration:0.3, delay: i * 0.03 }}
-              whileHover={{ y:-2, borderColor:`${tool.color}45`, background:`${tool.color}0A` }}
-              style={{
-                display:"inline-flex", alignItems:"center", gap:8,
-                padding:"7px 14px",
-                borderRadius:100, border:"1px solid var(--border)", background:"var(--bg-card)",
-                cursor:"default", transition:"all 0.2s",
-              }}
-            >
-              <div style={{ width:6, height:6, borderRadius:"50%",
-                background: tool.color, flexShrink:0,
-                boxShadow:`0 0 5px ${tool.color}70` }} />
-              <span style={{ fontSize:13, fontWeight:500, color:"var(--text-secondary)",
-                letterSpacing:"-0.01em" }}>
-                {tool.name}
-              </span>
-            </motion.div>
-          ))}
+          <Marquee
+            speed={40}
+            gradient
+            gradientColor={gradientBg}
+            gradientWidth={80}
+            pauseOnHover
+          >
+            {tools.map((tool) => (
+              <div
+                key={tool.name}
+                className="tool-logo"
+                style={{ padding: "0 36px", display: "flex", alignItems: "center" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={tool.src}
+                  alt={tool.name}
+                  style={{
+                    height: 28,
+                    width: "auto",
+                    objectFit: "contain",
+                    display: "block",
+                    filter: isDark ? "none" : "grayscale(1)",
+                    opacity: isDark ? 0.85 : 0.45,
+                    transition: "opacity 0.25s, filter 0.25s",
+                  }}
+                />
+              </div>
+            ))}
+          </Marquee>
         </div>
 
       </div>
+
+      <style>{`
+        .tool-logo:hover img { opacity: 1 !important; filter: grayscale(0) !important; }
+        .industry-item:hover { color: var(--hover-color) !important; }
+      `}</style>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Zap } from "lucide-react";
@@ -125,13 +125,21 @@ function NodeCanvas() {
 }
 
 export default function Hero() {
+  const [canvasReady, setCanvasReady] = useState(false);
+  useEffect(() => {
+    const id = requestIdleCallback
+      ? requestIdleCallback(() => setCanvasReady(true), { timeout: 1000 })
+      : setTimeout(() => setCanvasReady(true), 200);
+    return () => requestIdleCallback ? cancelIdleCallback(id) : clearTimeout(id);
+  }, []);
+
   return (
     <section
       className="relative grid-bg"
       style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
     >
-      {/* Canvas */}
-      <NodeCanvas />
+      {/* Canvas - deferred until idle to avoid blocking initial paint */}
+      {canvasReady && <NodeCanvas />}
 
       {/* Vignette - theme-aware, keeps text readable */}
       <div className="absolute inset-0 pointer-events-none hero-vignette" />
@@ -151,14 +159,12 @@ export default function Hero() {
       >
         {/* Status badge */}
         <div
-          className="anim-fade-in delay-100 badge-glow"
+          className="anim-fade-in delay-100"
           style={{ display:"inline-flex", alignItems:"center", gap:8,
-            padding:"8px 16px", borderRadius:100,
+            padding:"7px 16px", borderRadius:100,
             border:"1px solid var(--border)", background:"var(--bg-card)",
             backdropFilter:"blur(12px)", fontSize:12, color:"var(--text-secondary)", marginBottom:32 }}
         >
-          <span style={{ width:6, height:6, borderRadius:"50%", background:"#6EE7B7",
-            display:"inline-block", animation:"pulse 2s infinite" }} />
           Available for new projects
           <Zap size={11} style={{ color:"#6EE7B7" }} />
         </div>
@@ -167,7 +173,7 @@ export default function Hero() {
         <h1
           className="anim-fade-up delay-200"
           style={{ fontSize:"clamp(2.4rem, 6vw, 4.5rem)", fontWeight:700,
-            lineHeight:1.08, letterSpacing:"-0.03em", color:"var(--text-primary)", marginBottom:24 }}
+            lineHeight:1.06, letterSpacing:"-0.045em", color:"var(--text-primary)", marginBottom:24 }}
         >
           GTM Automation
           <br />
@@ -181,7 +187,7 @@ export default function Hero() {
             maxWidth:580, margin:"0 auto 40px", lineHeight:1.7 }}
         >
           Automated outbound and data pipelines across recruitment, fintech, medical,
-          non-profit, manufacturing, legal, and e-commerce — from lead discovery to outreach infrastructure, fully automated.
+          non-profit, manufacturing, legal, and e-commerce - from lead discovery to outreach infrastructure, fully automated.
         </p>
 
         {/* CTAs */}
@@ -189,30 +195,32 @@ export default function Hero() {
           className="anim-fade-up delay-400"
           style={{ display:"flex", flexWrap:"wrap", gap:16, alignItems:"center", justifyContent:"center" }}
         >
-          <motion.a
+          <a
             href="https://calendly.com/bjsbainsla"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ y: -3, boxShadow:"0 20px 40px rgba(110,231,183,0.25)" }}
             style={{ display:"inline-flex", alignItems:"center", gap:8,
-              padding:"14px 28px", background:"#6EE7B7", color:"var(--bg-page)",
-              fontWeight:600, fontSize:15, borderRadius:12, textDecoration:"none",
-              transition:"background 0.2s" }}
+              padding:"13px 28px", background:"#6EE7B7", color:"var(--bg-page)",
+              fontWeight:600, fontSize:14, borderRadius:10, textDecoration:"none",
+              letterSpacing:"-0.01em", transition:"opacity 0.2s" }}
+            onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
           >
             Book a Call
-            <ArrowRight size={15} />
-          </motion.a>
+            <ArrowRight size={14} />
+          </a>
 
-          <motion.button
+          <button
             onClick={() => document.getElementById("services")?.scrollIntoView({ behavior:"smooth" })}
-            whileHover={{ y: -3, borderColor:"rgba(110,231,183,0.5)" }}
             style={{ display:"inline-flex", alignItems:"center", gap:8,
-              padding:"14px 28px", background:"transparent", color:"var(--text-primary)",
-              fontWeight:500, fontSize:15, borderRadius:12, border:"1px solid var(--border)",
-              cursor:"pointer", transition:"border-color 0.2s" }}
+              padding:"13px 28px", background:"transparent", color:"var(--text-secondary)",
+              fontWeight:500, fontSize:14, borderRadius:10, border:"1px solid var(--border)",
+              cursor:"pointer", letterSpacing:"-0.01em", transition:"border-color 0.2s, color 0.2s" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "var(--text-primary)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-secondary)"; }}
           >
             See My Systems
-          </motion.button>
+          </button>
         </div>
       </div>
 

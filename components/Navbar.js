@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, CalendarDays, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
@@ -16,8 +16,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled]     = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
+  const [mobileOpen, setMobileOpen]     = useState(false);
+  const [contactActive, setContactActive] = useState(false);
   const pathname   = usePathname();
   const { isDark, toggleTheme } = useTheme();
 
@@ -27,182 +28,188 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Reset contact active state when navigating to a different page
+  useEffect(() => {
+    setContactActive(false);
+  }, [pathname]);
+
   const scrollToContact = (e) => {
     e.preventDefault();
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    setContactActive(true);
     setMobileOpen(false);
   };
 
   return (
     <>
-      {/* ─── Main bar ─── */}
       <motion.nav
-        initial={{ y: -72, opacity: 0 }}
+        initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-          height: 64,
+          height: 60,
           borderBottom: scrolled ? "1px solid var(--nav-border)" : "1px solid transparent",
           background: scrolled ? "var(--nav-bg)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          transition: "background 0.3s, border-color 0.3s, backdrop-filter 0.3s",
+          transition: "background 0.3s, border-color 0.3s",
         }}
       >
         <div
           className="container-xl"
           style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}
         >
-          {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <div style={{
-              width: 32, height: 32, borderRadius: 9, flexShrink: 0,
-              background: "linear-gradient(135deg, #6EE7B7 0%, #60A5FA 100%)",
-              display: "flex", alignItems: "center", justifyContent: "center",
+          {/* ── Logo ── */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
+            onClick={() => setContactActive(false)}>
+            <span style={{
+              color: "var(--text-primary)", fontSize: 14, fontWeight: 600,
+              letterSpacing: "-0.03em", lineHeight: 1,
             }}>
-              <span style={{ color: "#0E0E10", fontSize: 11, fontWeight: 800, letterSpacing: "-0.02em" }}>BS</span>
-            </div>
-            <span style={{ color: "var(--text-primary)", fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em" }}>
               Bhanu Singh
             </span>
           </Link>
 
-          {/* Desktop nav links */}
-          <div style={{ display: "flex", alignItems: "center", gap: 2 }} className="nav-desktop">
+          {/* ── Desktop nav links ── */}
+          <div style={{ display: "flex", alignItems: "center", gap: 0 }} className="nav-desktop">
             {navLinks.map((link) => {
-              const isActive = link.href !== "#contact" && pathname === link.href;
+              const isActive = link.href === "#contact"
+                ? contactActive
+                : (pathname === link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={link.href === "#contact" ? scrollToContact : undefined}
+                  onClick={link.href === "#contact" ? scrollToContact : () => setContactActive(false)}
                   style={{
-                    position: "relative", padding: "7px 14px", borderRadius: 8,
-                    fontSize: 14, fontWeight: 500, textDecoration: "none",
+                    position: "relative", padding: "6px 14px",
+                    fontSize: 13, fontWeight: 400, textDecoration: "none",
                     color: isActive ? "var(--text-primary)" : "var(--text-muted)",
                     transition: "color 0.2s",
+                    letterSpacing: "-0.01em",
                   }}
                   onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = "var(--text-primary)"; }}
                   onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "var(--text-muted)"; }}
                 >
+                  {link.label}
                   {isActive && (
                     <motion.span
-                      layoutId="nav-pill"
+                      layoutId="nav-underline"
                       style={{
-                        position: "absolute", inset: 0, borderRadius: 8,
-                        background: "var(--bg-card)", border: "1px solid var(--border)", zIndex: -1,
+                        position: "absolute", bottom: 0, left: 14, right: 14,
+                        height: 1, background: "var(--text-primary)", borderRadius: 1,
                       }}
-                      transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
+                      transition={{ type: "spring", bounce: 0.15, duration: 0.35 }}
                     />
                   )}
-                  {link.label}
                 </Link>
               );
             })}
           </div>
 
-          {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }} className="nav-desktop">
+          {/* ── Right side ── */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="nav-desktop">
             <a
               href="mailto:bjsbainsla@gmail.com"
-              style={{ fontSize: 13, color: "var(--text-ghost)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.color = "var(--text-secondary)"}
-              onMouseLeave={e => e.currentTarget.style.color = "var(--text-ghost)"}
+              style={{ fontSize: 12, color: "var(--text-secondary)", textDecoration: "none",
+                letterSpacing: "-0.01em", transition: "color 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.color = "var(--text-primary)"}
+              onMouseLeave={e => e.currentTarget.style.color = "var(--text-secondary)"}
             >
               bjsbainsla@gmail.com
             </a>
 
-            {/* Theme toggle */}
-            <motion.button
+            <button
               onClick={toggleTheme}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.92 }}
               style={{
-                width: 34, height: 34, borderRadius: 9, flexShrink: 0,
-                background: "var(--bg-card)", border: "1px solid var(--border)",
+                width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+                background: "transparent", border: "1px solid var(--border)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer",
+                cursor: "pointer", transition: "border-color 0.2s",
               }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "var(--border)"}
               aria-label="Toggle theme"
             >
               {isDark
-                ? <Sun  size={14} style={{ color: "var(--text-muted)" }} />
-                : <Moon size={14} style={{ color: "var(--text-muted)" }} />
+                ? <Sun  size={13} style={{ color: "var(--text-muted)" }} />
+                : <Moon size={13} style={{ color: "var(--text-muted)" }} />
               }
-            </motion.button>
+            </button>
 
-            {/* Book a Call */}
-            <motion.a
+            <a
               href="https://calendly.com/bjsbainsla"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(110,231,183,0.35)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{
-                display: "inline-flex", alignItems: "center", gap: 7,
-                padding: "8px 18px", background: "#6EE7B7", color: "#0A0A0B",
-                fontSize: 13, fontWeight: 700, borderRadius: 9, textDecoration: "none",
-                letterSpacing: "-0.01em", boxShadow: "0 0 0 1px rgba(110,231,183,0.3)",
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "7px 16px",
+                border: "1px solid var(--border)",
+                background: "transparent",
+                color: "var(--text-primary)",
+                fontSize: 13, fontWeight: 500, borderRadius: 8, textDecoration: "none",
+                letterSpacing: "-0.01em", transition: "border-color 0.2s, color 0.2s",
               }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; }}
             >
-              <CalendarDays size={14} strokeWidth={2.5} />
               Book a Call
-            </motion.a>
+            </a>
           </div>
 
-          {/* Mobile: theme toggle + hamburger */}
+          {/* ── Mobile: theme + hamburger ── */}
           <div style={{ display: "flex", alignItems: "center", gap: 8 }} className="nav-mobile-btn">
-            <motion.button
+            <button
               onClick={toggleTheme}
-              whileTap={{ scale: 0.9 }}
               style={{
-                width: 34, height: 34, borderRadius: 9,
-                background: "var(--bg-card)", border: "1px solid var(--border)",
+                width: 32, height: 32, borderRadius: 8,
+                background: "transparent", border: "1px solid var(--border)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer",
               }}
               aria-label="Toggle theme"
             >
               {isDark
-                ? <Sun  size={14} style={{ color: "var(--text-muted)" }} />
-                : <Moon size={14} style={{ color: "var(--text-muted)" }} />
+                ? <Sun  size={13} style={{ color: "var(--text-muted)" }} />
+                : <Moon size={13} style={{ color: "var(--text-muted)" }} />
               }
-            </motion.button>
+            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               style={{ background: "none", border: "none", cursor: "pointer",
                 color: "var(--text-muted)", padding: 4 }}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile drawer */}
+      {/* ── Mobile drawer ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.18 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
             style={{
-              position: "fixed", top: 64, left: 0, right: 0, zIndex: 49,
+              position: "fixed", top: 60, left: 0, right: 0, zIndex: 49,
               background: "var(--nav-bg)", backdropFilter: "blur(20px)",
-              borderBottom: "1px solid var(--border)", padding: "16px 24px 20px",
+              borderBottom: "1px solid var(--border)", padding: "12px 24px 20px",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 16 }}>
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={link.href === "#contact" ? scrollToContact : () => setMobileOpen(false)}
-                  style={{ padding: "11px 14px", borderRadius: 8, fontSize: 14,
-                    color: "var(--text-secondary)", textDecoration: "none",
+                  style={{ padding: "10px 12px", borderRadius: 7, fontSize: 14,
+                    color: pathname === link.href ? "var(--text-primary)" : "var(--text-secondary)",
+                    textDecoration: "none", letterSpacing: "-0.01em",
+                    fontWeight: pathname === link.href ? 500 : 400,
                     background: pathname === link.href ? "var(--bg-card)" : "transparent",
                     border: pathname === link.href ? "1px solid var(--border)" : "1px solid transparent" }}
                 >
@@ -210,16 +217,17 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <div style={{ borderTop: "1px solid var(--border)", paddingTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ borderTop: "1px solid var(--border)", paddingTop: 14, display: "flex", flexDirection: "column", gap: 8 }}>
               <a href="mailto:bjsbainsla@gmail.com"
-                style={{ fontSize: 13, color: "var(--text-ghost)", textDecoration: "none", padding: "4px 14px" }}>
+                style={{ fontSize: 12, color: "var(--text-ghost)", textDecoration: "none", padding: "4px 12px",
+                  letterSpacing: "-0.01em" }}>
                 bjsbainsla@gmail.com
               </a>
               <a href="https://calendly.com/bjsbainsla" target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                  padding: "13px 18px", background: "#6EE7B7", color: "#0A0A0B",
-                  borderRadius: 9, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>
-                <CalendarDays size={15} strokeWidth={2.5} />
+                style={{ display: "flex", alignItems: "center", justifyContent: "center",
+                  padding: "12px 18px", border: "1px solid var(--border)", color: "var(--text-primary)",
+                  borderRadius: 8, fontSize: 13, fontWeight: 500, textDecoration: "none",
+                  letterSpacing: "-0.01em" }}>
                 Book a Call
               </a>
             </div>
@@ -227,7 +235,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Responsive visibility */}
       <style>{`
         .nav-desktop    { display: flex !important; }
         .nav-mobile-btn { display: none !important; }

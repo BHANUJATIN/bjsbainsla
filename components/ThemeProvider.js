@@ -2,19 +2,19 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext({ isDark: true, toggleTheme: () => {} });
+const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
 
 export function useTheme() {
   return useContext(ThemeContext);
 }
 
 export default function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
-  // Read persisted preference on mount
+  // Read persisted preference on mount, default is light
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    if (saved === "light") setIsDark(false);
+    if (saved === "dark") setIsDark(true);
   }, []);
 
   // Apply data-theme attribute whenever isDark changes

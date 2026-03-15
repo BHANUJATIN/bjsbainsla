@@ -1,115 +1,136 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Network, Search, Brain, Users } from "lucide-react";
 
 const services = [
   {
-    icon: Network,
+    num: "01",
     title: "Outbound Infrastructure",
-    description: "End-to-end outbound pipelines including list building, enrichment, personalization, and campaign delivery.",
-    accent: "#6EE7B7",
+    description: "End-to-end outbound pipelines - list building, enrichment, personalization, and campaign delivery at scale.",
     tag: "Core Service",
   },
   {
-    icon: Search,
+    num: "02",
     title: "Job Discovery Systems",
-    description: "Automated pipelines that identify job openings globally across LinkedIn, Indeed, Xing and others.",
-    accent: "#60A5FA",
+    description: "Automated pipelines that surface job openings globally across LinkedIn, Indeed, Xing and 12+ other sources.",
     tag: "Recruitment",
   },
   {
-    icon: Brain,
+    num: "03",
     title: "Lead Intelligence",
-    description: "Automations to detect company activity, hiring signals, and engagement patterns across platforms.",
-    accent: "#A78BFA",
+    description: "Automations that detect company activity, hiring signals, and engagement patterns before you reach out.",
     tag: "Intelligence",
   },
   {
-    icon: Users,
+    num: "04",
     title: "Warm Network Mapping",
-    description: "Systems that identify mutual connections and relationship paths before outreach to increase reply rates.",
-    accent: "#FBBF24",
+    description: "Systems that identify mutual connections and relationship paths to increase reply rates before cold outreach.",
     tag: "Strategy",
   },
 ];
 
-const cardStyle = (accent) => ({
-  padding: 28,
-  borderRadius: 16,
-  border: `1px solid var(--border)`,
-  background: "var(--bg-card)",
-  cursor: "default",
-  position: "relative",
-  overflow: "hidden",
-});
-
 export default function Services() {
   return (
-    <section id="services" style={{ padding: "96px 0" }}>
+    <section id="services" style={{ padding: "100px 0" }}>
       <div className="container-xl">
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: 56 }}
+          transition={{ duration: 0.45 }}
+          style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between",
+            flexWrap: "wrap", gap: 16, marginBottom: 40 }}
         >
-          <p style={{ fontSize: 11, fontWeight: 600, color: "#6EE7B7", textTransform: "uppercase",
-            letterSpacing: "0.12em", marginBottom: 14 }}>
-            What I Build
-          </p>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 700,
-            color: "var(--text-primary)", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)",
+            color: "var(--text-primary)", letterSpacing: "-0.04em", lineHeight: 1.1 }}>
             GTM Systems I Build
           </h2>
+          <p style={{ fontSize: 14, color: "var(--text-muted)", maxWidth: 260, lineHeight: 1.65 }}>
+            Four core system types. Each delivered end-to-end.
+          </p>
         </motion.div>
 
-        {/* Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-          {services.map((s, i) => {
-            const Icon = s.icon;
-            return (
+        {/* Rows */}
+        <div>
+          {services.map((s, i) => (
+            <div key={s.title}>
               <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.55, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -6, scale: 1.01, borderColor: `${s.accent}35` }}
-                style={cardStyle(s.accent)}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                className="services-row"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "88px 1fr auto",
+                  alignItems: "center",
+                  gap: 28,
+                  padding: "28px 0",
+                  cursor: "default",
+                }}
               >
-                {/* Hover bg */}
-                <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
-                  background: `radial-gradient(circle at 20% 20%, ${s.accent}07 0%, transparent 60%)` }} />
+                {/* Number */}
+                <span style={{
+                  fontSize: "clamp(2.8rem, 4vw, 4rem)",
+                  fontWeight: 700,
+                  color: "var(--text-primary)",
+                  letterSpacing: "-0.06em",
+                  lineHeight: 1,
+                  userSelect: "none",
+                }}>
+                  {s.num}
+                </span>
 
-                {/* Top row */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, display: "flex",
-                    alignItems: "center", justifyContent: "center",
-                    background: `${s.accent}15`, border: `1px solid ${s.accent}25` }}>
-                    <Icon size={17} style={{ color: s.accent }} />
-                  </div>
-                  <span style={{ fontSize: 11, fontWeight: 600, padding: "4px 10px", borderRadius: 6,
-                    color: s.accent, background: `${s.accent}12` }}>
-                    {s.tag}
-                  </span>
+                {/* Content */}
+                <div>
+                  <h3 style={{
+                    fontSize: "clamp(20px, 2.5vw, 26px)",
+                    color: "var(--text-primary)",
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.2,
+                    marginBottom: 10,
+                  }}>
+                    {s.title}
+                  </h3>
+                  <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: 520 }}>
+                    {s.description}
+                  </p>
                 </div>
 
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)", marginBottom: 10 }}>
-                  {s.title}
-                </h3>
-                <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.65 }}>
-                  {s.description}
-                </p>
+                {/* Tag */}
+                <span className="services-tag" style={{
+                  fontSize: 10.5, color: "var(--text-ghost)", textTransform: "uppercase",
+                  letterSpacing: "0.08em", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0,
+                }}>
+                  {s.tag}
+                </span>
               </motion.div>
-            );
-          })}
+
+              {/* Document-style separator - inset on both sides */}
+              {i < services.length - 1 && (
+                <div style={{
+                  height: 1,
+                  background: "var(--border)",
+                  margin: "0 8px",
+                }} />
+              )}
+            </div>
+          ))}
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .services-row {
+            grid-template-columns: 64px 1fr !important;
+            gap: 16px !important;
+          }
+          .services-tag { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }

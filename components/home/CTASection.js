@@ -5,58 +5,53 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section style={{ padding: "96px 0", position: "relative", overflow: "hidden" }}>
-      {/* Glow */}
-      <div style={{ position:"absolute", inset:0, pointerEvents:"none",
-        background:"radial-gradient(ellipse 60% 50% at 50% 50%, rgba(110,231,183,0.06) 0%, transparent 70%)" }} />
-
-      <div className="container-xl" style={{ position:"relative", zIndex:1 }}>
+    <section style={{ padding: "100px 0", borderTop: "1px solid var(--border)" }}>
+      <div className="container-xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={{ textAlign: "center", maxWidth: 640, margin: "0 auto" }}
+          transition={{ duration: 0.5 }}
+          style={{ textAlign: "center", maxWidth: 600, margin: "0 auto" }}
         >
-          {/* Decorative line */}
-          <div style={{ width: 48, height: 1, margin: "0 auto 32px",
-            background: "linear-gradient(90deg, transparent, #6EE7B7, transparent)" }} />
-
-          <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700,
-            color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: 20, lineHeight: 1.15 }}>
+          <h2 style={{ fontSize: "clamp(2rem, 5vw, 2.8rem)", fontWeight: 700,
+            color: "var(--text-primary)", letterSpacing: "-0.045em", marginBottom: 18, lineHeight: 1.1 }}>
             Need a scalable{" "}
             <span className="gradient-text">outbound system?</span>
           </h2>
 
-          <p style={{ fontSize: 17, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 40 }}>
+          <p style={{ fontSize: 16, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 40 }}>
             I design data pipelines and GTM automations that generate qualified leads continuously
             - without manual effort.
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
-            <motion.a
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+            <a
               href="https://calendly.com/bjsbainsla"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-shimmer"
-              whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(110,231,183,0.3)" }}
               style={{ display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "15px 32px", background: "#6EE7B7", color: "var(--bg-page)",
-                fontWeight: 600, fontSize: 15, borderRadius: 12, textDecoration: "none" }}
+                padding: "13px 28px", background: "#6EE7B7", color: "#0A0A0B",
+                fontWeight: 600, fontSize: 14, borderRadius: 10, textDecoration: "none",
+                letterSpacing: "-0.01em", transition: "opacity 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
             >
               Book a Call
-              <ArrowRight size={15} />
-            </motion.a>
+              <ArrowRight size={14} />
+            </a>
 
-            <motion.a
+            <a
               href="mailto:bjsbainsla@gmail.com"
-              whileHover={{ y: -4, borderColor: "rgba(110,231,183,0.4)" }}
               style={{ display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "15px 32px", border: "1px solid var(--border)", color: "var(--text-secondary)",
-                fontWeight: 500, fontSize: 15, borderRadius: 12, textDecoration: "none" }}
+                padding: "13px 28px", border: "1px solid var(--border)", color: "var(--text-secondary)",
+                fontWeight: 500, fontSize: 14, borderRadius: 10, textDecoration: "none",
+                letterSpacing: "-0.01em", transition: "border-color 0.2s, color 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "var(--text-primary)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-secondary)"; }}
             >
               Send an Email
-            </motion.a>
+            </a>
           </div>
         </motion.div>
       </div>
